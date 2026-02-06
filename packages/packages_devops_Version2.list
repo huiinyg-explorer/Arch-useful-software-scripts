@@ -1,0 +1,8 @@
+# DevOps / infra tools
+ansible
+terraform
+kubectl
+helm
+aws-cli
+az-cli
+yq

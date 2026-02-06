@@ -1,0 +1,10 @@
+# Security & crypto tools
+gnupg
+openssh
+pass
+gnome-keyring
+seahorse
+clamav
+rkhunter
+lynis
+tcpdump

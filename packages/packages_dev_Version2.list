@@ -1,0 +1,26 @@
+# Development: languages, build tools, editors, VCS, containers
+base-devel
+gcc
+clang
+cmake
+make
+python
+python-pip
+python-virtualenv
+nodejs
+npm
+rust
+go
+openjdk
+maven
+gradle
+git
+subversion
+neovim
+emacs
+aur:visual-studio-code-bin
+docker
+docker-compose
+podman
+buildah
+vagrant

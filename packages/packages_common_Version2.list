@@ -1,0 +1,7 @@
+# common utilities
+vim
+git
+curl
+htop
+# you can mark single AUR packages with aur: prefix
+# aur:google-chrome

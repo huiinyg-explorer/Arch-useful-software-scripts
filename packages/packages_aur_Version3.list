@@ -1,0 +1,12 @@
+# AUR packages (file name contains "aur" -> group-level AUR)
+# Put AUR-only packages here OR prefix with aur: in other group files.
+google-chrome
+visual-studio-code-bin
+paru
+yay
+spotify
+slack-desktop
+teams
+zoom
+notion-app-bin
+fonts-noto-emoji

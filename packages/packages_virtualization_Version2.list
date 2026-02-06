@@ -1,0 +1,10 @@
+# Virtualization & VM tools
+qemu
+libvirt
+virt-manager
+virt-viewer
+ebtables
+dnsmasq
+vde2
+virtualbox
+virtualbox-host-modules-arch

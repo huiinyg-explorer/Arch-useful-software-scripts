@@ -1,0 +1,16 @@
+# CLI/networking/monitoring tools
+net-tools
+iproute2
+networkmanager
+dhcpcd
+openresolv
+nmap
+traceroute
+tcpdump
+iftop
+nethogs
+bmon
+vnstat
+mtr
+bind-tools
+speedtest-cli
