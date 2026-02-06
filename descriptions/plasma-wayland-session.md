@@ -1,0 +1,8 @@
+Package: plasma-wayland-session
+Group: packages_desktop-plasma_Version2
+Source: pacman/official
+
+短说明：
+
+- 用途：
+- 备注：
