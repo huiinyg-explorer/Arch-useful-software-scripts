@@ -9,7 +9,7 @@
 - 自动生成描述模板（首次遇到包时会生成 descriptions/<pkg>.md）。
 - 日志记录与运行汇总（默认保存在 $XDG_STATE_HOME 或 ~/.local/state）。
 - 支持 dry-run 与按包逐个安装并记录失败项。
-
+-This repository contains an interactive Arch Linux package installer using fzf + yay. The project was created with assistance from an AI (ChatGPT).
 快速开始
 ````bash
 # 1. 克隆或创建仓库目录，然后把文件放入
