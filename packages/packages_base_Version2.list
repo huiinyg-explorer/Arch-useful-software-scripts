@@ -1,8 +1,0 @@
-# Base & essential system packages / groups
-base
-base-devel
-linux-lts
-linux-headers
-sudo
-bash-completion
-pacman-contrib

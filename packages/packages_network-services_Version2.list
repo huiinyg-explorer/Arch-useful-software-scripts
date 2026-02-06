@@ -1,9 +1,0 @@
-# Server & network services
-nginx
-apache
-mariadb
-postgresql
-redis
-openssh
-fail2ban
-ufw
