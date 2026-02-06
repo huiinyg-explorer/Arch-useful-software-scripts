@@ -1,29 +1,24 @@
 #!/usr/bin/env bash
-# Interactive Arch installer (yay-only) — FIXED argument parsing
-# This is the same script as the previous "with_logging" version but with robust
-# command-line parsing (no unconditional `shift`), avoiding "shift: out of range".
-#
+# Interactive Arch installer (yay-only) — use packages/ and descriptions/ in script directory
 # Usage:
 #   ./interactive-arch-installer-yay-only_with_logging_fixed.sh [PACKAGES_DIR] [--dry-run] [--no-confirm] [--log-file <path>] [--verbose]
 set -euo pipefail
 
 # ---------------------------
-# Defaults
+# Locate script directory and set defaults to script_dir/packages and script_dir/descriptions
 # ---------------------------
-PACKAGES_DIR="./packages"   # default, may be overridden by first non-option arg
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+PACKAGES_DIR="${SCRIPT_DIR}/packages"   # default, may be overridden by first non-option arg
+DESC_DIR="${SCRIPT_DIR}/descriptions"   # default descriptions directory relative to script
 DRY_RUN=false
 AUTO_CONFIRM=true   # when true uses --noconfirm for yay installs; false => ask before installing
 LOGFILE_OVERRIDE=""
 VERBOSE=false
+PACKAGES_DIR_SET=false
 
 # ---------------------------
 # Robust argument parsing:
-# - first positional arg (if present and not an option) is PACKAGES_DIR
-# - supported options: --dry-run, --no-confirm, --log-file <path>, --verbose, --help
 # ---------------------------
-# Use a flag to record whether PACKAGES_DIR was set by the user.
-PACKAGES_DIR_SET=false
-
 while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run)
@@ -50,7 +45,7 @@ while [ $# -gt 0 ]; do
     --help|-h)
       cat <<'USAGE'
 Usage: installer.sh [PACKAGES_DIR] [--dry-run] [--no-confirm] [--log-file <path>] [--verbose]
- - PACKAGES_DIR default ./packages
+ - PACKAGES_DIR default is ./packages relative to the script location
  - --dry-run    : only show what would happen
  - --no-confirm : do not auto-confirm install (will prompt)
  - --log-file   : override default log path
@@ -63,7 +58,6 @@ USAGE
       exit 1
       ;;
     *)
-      # non-option argument: treat as PACKAGES_DIR if not already set
       if [ "$PACKAGES_DIR_SET" = false ]; then
         PACKAGES_DIR="$1"
         PACKAGES_DIR_SET=true
@@ -75,12 +69,6 @@ USAGE
       ;;
   esac
 done
-
-# ---------------------------
-# The rest of the script follows exactly the previous implementation:
-# logging, color helpers, ensure_yay, building lines, fzf UI, installation loop, summary.
-# For brevity here we include the full implementation (unchanged except above parsing fix).
-# ---------------------------
 
 # ---------------------------
 # Helpers: logging & colors
@@ -96,7 +84,7 @@ fi
 REPORT_FILE="${LOG_DIR}/installer_summary_${TIMESTAMP}.txt"
 
 # ANSI helpers
-_color() { printf '\033[%sm' "$1"; }    # usage: $(_color "1;32")
+_color() { printf '\033[%sm' "$1"; }
 _color_reset() { printf '\033[0m'; }
 
 # levels
@@ -198,7 +186,6 @@ ensure_yay() {
 # ---------------------------
 # Build selectable lines
 # ---------------------------
-DESC_DIR="descriptions"
 mkdir -p "$DESC_DIR"
 lines=()
 declare -A seen
@@ -267,6 +254,7 @@ else PREVIEW_PCT=50; fi
 # header info
 echo
 echo "$(color_text "1;36" "Interactive Arch Installer (yay-only) - $(date)")"
+echo "Script dir: $SCRIPT_DIR"
 echo "Packages dir: $PACKAGES_DIR"
 echo "Descriptions dir: $DESC_DIR"
 echo "Log file: $LOGFILE"
