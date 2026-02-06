@@ -19,14 +19,14 @@
 # 1. 克隆或创建仓库目录，然后把文件放入
 git init
 git add .
-git commit -m "Initial import: interactive Arch installer (AI-assisted)"
+git commit -m "Arch-useful-software-scripts.sh"
 
 # 2. 安装依赖（示例）
 sudo pacman -Syu fzf git base-devel
 
 # 3. 使脚本可执行并运行 dry-run（先测试）
-chmod +x interactive-arch-installer-yay-only_with_logging_fixed.sh
-./interactive-arch-installer-yay-only_with_logging_fixed.sh ./packages --dry-run
+chmod +x Arch-useful-software-scripts.sh
+./Arch-useful-software-scripts.sh --dry-run
 
 # 4. 真正运行（脚本会在缺少 yay 时提示并可以自动安装）
-./interactive-arch-installer-yay-only_with_logging_fixed.sh ./packages
+./Arch-useful-software-scripts.sh
